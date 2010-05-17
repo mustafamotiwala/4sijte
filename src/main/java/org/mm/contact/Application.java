@@ -1,13 +1,13 @@
 package org.mm.contact;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
-
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
 
 import com.google.gdata.client.Query;
 import com.google.gdata.client.contacts.ContactsService;
@@ -30,33 +30,24 @@ import org.mm.contact.ui.ContactListModel;
  */
 public class Application extends JFrame {
     private static final Log log = LogFactory.getLog(Application.class);
-    private List<ContactEntry> contacts;
-    private static Application app;
-    private ContactsService contactsService;
-    private URL urlContactsService;
 
-    public Application(String file, String username, String password){
+    public Application(String username, String password) {
         super("Google Contact Application");
         try {
-            contactsService = new ContactsService("Contact Synchronizer.");
-            contactsService.setUserCredentials(username,password);
-            urlContactsService = new URL(String.format("http://www.google.com/m8/feeds/contacts/%1$s/full", username));
+            final ContactsService service = new ContactsService("Contact Organizer.");
+            service.setUserCredentials(username, password);
+            URL urlContactsService = new URL(String.format("http://www.google.com/m8/feeds/contacts/%1$s/full", username));
             Query contactQuery = new Query(urlContactsService);
             contactQuery.setMaxResults(Integer.MAX_VALUE);
-            ContactFeed resultFeed = contactsService.getFeed(contactQuery, ContactFeed.class);
-//            ContactReader cr = new ContactReader(new FileInputStream(file));
-//            contacts = cr.read();
-            contacts = resultFeed.getEntries();
+            ContactFeed resultFeed = service.getFeed(contactQuery, ContactFeed.class);
+            List<ContactEntry> contacts = resultFeed.getEntries();
             JXList list = new JXList(new ContactListModel(contacts));
             list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             list.addHighlighter(HighlighterFactory.createAlternateStriping());
             JScrollPane jspContacts = new JScrollPane(list);
-            jspContacts.setColumnHeaderView(new JXLabel("Contacts",JXLabel.CENTER));
-            setLayout(new MigLayout("wrap","[grow]", "[grow][]"));
+            jspContacts.setColumnHeaderView(new JXLabel("Contacts", JXLabel.CENTER));
+            setLayout(new MigLayout("wrap", "[grow]", "[grow][]"));
             add(jspContacts, "grow");
-            add(new JButton( new LoadContactsAction()));
-        } catch (FileNotFoundException e) {
-            log.info("Could not find file to load in given path:" + file);
         } catch (AuthenticationException e) {
             JOptionPane.showMessageDialog(null, "Unable to authenticate.", "Contact Organizer", JOptionPane.ERROR_MESSAGE);
             log.info("Unable authenticate");
@@ -70,33 +61,18 @@ public class Application extends JFrame {
         }
     }
 
-    public static void main(String args[]){
-        if(args.length < 3){
+    public static void main(String args[]) {
+        if (args.length < 2) {
             printUsage();
             System.exit(1);
         }
-        app = new Application(args[0], args[1], args[2]);
+        Application app = new Application(args[1], args[2]);
         app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         app.setVisible(true);
-        app.setSize(400,200);
+        app.setSize(400, 200);
     }
 
     private static void printUsage() {
-        System.out.println("Usage: java org.mm.contact.Application <file to load> <username> <password>");
-    }
-
-    public void loadContacts() throws IOException, ServiceException {
-        long startMilliseconds = System.currentTimeMillis();
-        for(ContactEntry contact:contacts){
-            contactsService.insert(urlContactsService, contact);
-        }
-        long totalMilliseconds = System.currentTimeMillis() - startMilliseconds;
-        long totalTimeInSeconds = totalMilliseconds / 1000;
-        log.info(String.format("Total time to load all contacts: %1$d", totalTimeInSeconds));
-        log.info(String.format("Average time to load a contact: %1$d", totalTimeInSeconds /contacts.size()));
-    }
-
-    public static Application getInstance(){
-        return app; 
+        System.out.println("Usage: java org.mm.contact.Application <username> <password>");
     }
 }
