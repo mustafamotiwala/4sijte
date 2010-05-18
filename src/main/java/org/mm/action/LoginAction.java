@@ -1,14 +1,20 @@
-package org.mm.contact;
+package org.mm.action;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.net.URL;
+import java.util.concurrent.Executors;
 import javax.swing.AbstractAction;
 import javax.swing.KeyStroke;
 
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 import org.jdesktop.swingx.JXLoginPane;
 import org.mm.Application;
+import org.mm.contact.ContactListModel;
+import org.mm.contact.ContactLoader;
+import org.mm.contact.GoogleLoginServiceAdapter;
 
 /**
  * User: Mustafa Motiwala
@@ -18,6 +24,8 @@ import org.mm.Application;
 public class LoginAction extends AbstractAction {
     @Inject
     private GoogleLoginServiceAdapter loginService;
+    @Inject @Named("contactLoader")
+    private Runnable loader;
 
     public LoginAction() {
         super("Login");
@@ -29,8 +37,11 @@ public class LoginAction extends AbstractAction {
     public void actionPerformed(ActionEvent evt) {
         JXLoginPane loginPane = new JXLoginPane(loginService);
         loginPane.setMessage("Please enter your account information.");
-        if (JXLoginPane.Status.SUCCEEDED == JXLoginPane.showLoginDialog(Application.getInstance(), loginPane)){
-            Application.getInstance().loggedIn(loginPane.getUserName());
+        Application application = Application.getInstance();
+        if (JXLoginPane.Status.SUCCEEDED == JXLoginPane.showLoginDialog(application, loginPane)){
+            application.setUserName(loginPane.getUserName());
+            application.makeBusy();
+            Executors.newSingleThreadExecutor().execute(loader);
         }
     }
 }
