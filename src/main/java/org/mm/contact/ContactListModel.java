@@ -1,4 +1,4 @@
-package org.mm.contact.ui;
+package org.mm.contact;
 
 import java.util.Collections;
 import java.util.List;
@@ -19,7 +19,7 @@ public class ContactListModel extends AbstractListModel {
     private List<ContactEntry> data = Collections.emptyList();
 
     public ContactListModel(List<ContactEntry> data) {
-        this.data = data;
+        this.data = Collections.unmodifiableList(data);
     }
 
     @Override
@@ -40,7 +40,8 @@ public class ContactListModel extends AbstractListModel {
             if (null != given) returnVal.append(given.getValue());
         } catch (NullPointerException ignored) { }
         if (hasFullName) returnVal.append(")");
-        return returnVal.toString();
+        if(returnVal.length() < 1) return "N/A";
+        else return returnVal.toString();
     }
 
     @Override
