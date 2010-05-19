@@ -2,7 +2,6 @@ package org.mm;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
@@ -10,14 +9,9 @@ import javax.swing.Action;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JScrollPane;
-import javax.swing.ListSelectionModel;
+import javax.swing.JTabbedPane;
 
-import com.google.gdata.client.Query;
 import com.google.gdata.client.contacts.ContactsService;
-import com.google.gdata.data.contacts.ContactEntry;
-import com.google.gdata.data.contacts.ContactFeed;
-import com.google.gdata.util.ServiceException;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
@@ -26,15 +20,10 @@ import net.miginfocom.swing.MigLayout;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jdesktop.swingx.JXBusyLabel;
-import org.jdesktop.swingx.JXLabel;
-import org.jdesktop.swingx.JXList;
 import org.jdesktop.swingx.JXPanel;
-import org.jdesktop.swingx.decorator.HighlighterFactory;
 import org.jdesktop.swingx.painter.BusyPainter;
 import org.jdesktop.swingx.painter.MattePainter;
 import org.jdesktop.swingx.util.PaintUtils;
-import org.mm.action.LoginAction;
-import org.mm.contact.ContactListModel;
 import org.mm.contact.ContactModule;
 
 /**
@@ -47,21 +36,25 @@ public class Application extends JFrame {
 
     private static Application app;
 
-    @Inject @Named("svcContacts")
+    @Inject
+    @Named("svcContacts")
     private ContactsService service;
-    @Inject @Named("loginAction")
+    @Inject
+    @Named("loginAction")
     private Action loginAction;
+    @Inject
+    private List<ApplicationTab> applicationTabs;
 
     private String userName;
     private URL serviceUrl;
-    private JXPanel busyPanel=new JXPanel(new MigLayout("","[center, grow]","[center, grow]"), true);
+    private JXPanel busyPanel = new JXPanel(new MigLayout("", "[center, grow]", "[center, grow]"), true);
 
     public Application() {
         super("Google Contact Application");
     }
 
     public static void main(String args[]) {
-        Injector injector = Guice.createInjector(new ContactModule());
+        Injector injector = Guice.createInjector(new ApplicationModule(), new ContactModule());
         app = injector.getInstance(Application.class);
         app.initialize();
         app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -81,7 +74,7 @@ public class Application extends JFrame {
         /*
         Busy Panel:
         */
-        JXBusyLabel busyLabel = new JXBusyLabel(new Dimension(50,50));
+        JXBusyLabel busyLabel = new JXBusyLabel(new Dimension(50, 50));
         busyLabel.setName("Please Wait");
         BusyPainter busyPainter = busyLabel.getBusyPainter();
         busyPainter.setAntialiasing(true);
@@ -91,6 +84,11 @@ public class Application extends JFrame {
         busyPanel.setBackgroundPainter(new MattePainter(PaintUtils.NIGHT_GRAY, true));
         busyPanel.add(busyLabel);
         setGlassPane(busyPanel);
+        JTabbedPane tabPane = new JTabbedPane(JTabbedPane.BOTTOM);
+        for (ApplicationTab tab : applicationTabs) {
+            tabPane.addTab(tab.getName(), tab.getTab());
+        }
+        add(tabPane, "grow");
     }
 
     public static Application getInstance() {
@@ -105,7 +103,8 @@ public class Application extends JFrame {
         this.userName = userName;
         try {
             setServiceUrl(new URL(String.format("http://www.google.com/m8/feeds/contacts/%1$s/full", userName)));
-        } catch (MalformedURLException ignored) {}
+        } catch (MalformedURLException ignored) {
+        }
     }
 
     public URL getServiceUrl() {
@@ -116,12 +115,12 @@ public class Application extends JFrame {
         this.serviceUrl = serviceUrl;
     }
 
-    public void makeBusy(){
+    public void makeBusy() {
         busyPanel.setVisible(true);
         validate();
     }
 
-    public void makeAvailable(){
+    public void makeAvailable() {
         busyPanel.setVisible(false);
     }
 }

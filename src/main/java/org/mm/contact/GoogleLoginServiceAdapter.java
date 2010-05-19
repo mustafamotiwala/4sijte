@@ -1,15 +1,10 @@
 package org.mm.contact;
 
-import java.net.URL;
-
-import com.google.gdata.client.Query;
 import com.google.gdata.client.contacts.ContactsService;
-import com.google.gdata.data.contacts.ContactFeed;
 import com.google.gdata.util.AuthenticationException;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import org.jdesktop.swingx.auth.LoginService;
-import org.mm.Application;
 
 /**
  * User: Mustafa Motiwala
