@@ -19,8 +19,6 @@ public class ApplicationModule extends AbstractModule {
     @Override
     protected void configure() {
         bind(Action.class).annotatedWith(Names.named("loginAction")).to(LoginAction.class).in(Scopes.SINGLETON);
-        bind(new TypeLiteral<List<ApplicationTab>>() {
-        }).to(new TypeLiteral<ArrayList<ApplicationTab>>() {
-        }).in(Scopes.SINGLETON);
+        bind(new TypeLiteral<List<ApplicationTab>>() {}).to(new TypeLiteral<ArrayList<ApplicationTab>>(){}).in(Scopes.SINGLETON);
     }
 }
