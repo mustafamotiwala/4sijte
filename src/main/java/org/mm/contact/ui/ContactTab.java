@@ -21,12 +21,13 @@ import org.mm.contact.ContactListModel;
  * Time: 6:39:26 PM
  */
 public class ContactTab implements ApplicationTab {
-    private JXPanel tabContent;
+    private JXPanel tabContent = new JXPanel();
     private final JXList list = new JXList();
 
     public ContactTab() {
-        tabContent = new JXPanel();
+        JXPanel contactDetails = new JXPanel();
         tabContent.setLayout(new MigLayout("", "[grow]", "[grow]"));
+        contactDetails.setLayout(new MigLayout());
     }
 
     @Override

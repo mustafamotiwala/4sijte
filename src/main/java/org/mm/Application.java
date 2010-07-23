@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.Action;
 import javax.swing.JFrame;
@@ -31,6 +32,7 @@ import org.mm.contact.ContactModule;
  * Date: Apr 17, 2010
  * Time: 5:37:17 PM
  */
+@SuppressWarnings("unused")
 public class Application extends JFrame {
     private static final Log log = LogFactory.getLog(Application.class);
 
@@ -43,7 +45,7 @@ public class Application extends JFrame {
     @Named("loginAction")
     private Action loginAction;
     @Inject
-    private List<ApplicationTab> applicationTabs;
+    private List<ApplicationTab> applicationTabs = new ArrayList<ApplicationTab>(0);
 
     private String userName;
     private URL serviceUrl;
@@ -84,6 +86,9 @@ public class Application extends JFrame {
         busyPanel.setBackgroundPainter(new MattePainter(PaintUtils.NIGHT_GRAY, true));
         busyPanel.add(busyLabel);
         setGlassPane(busyPanel);
+        /*
+        Get Content Panes:
+         */
         JTabbedPane tabPane = new JTabbedPane(JTabbedPane.BOTTOM);
         for (ApplicationTab tab : applicationTabs) {
             tabPane.addTab(tab.getName(), tab.getTab());
