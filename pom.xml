@@ -102,6 +102,26 @@
             <classifier>sources</classifier>
             <version>3.7.3.1</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.pivot</groupId>
+            <artifactId>pivot-core</artifactId>
+            <version>1.5.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.pivot</groupId>
+            <artifactId>pivot-wtk</artifactId>
+            <version>1.5.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.pivot</groupId>
+            <artifactId>pivot-wtk-terra</artifactId>
+            <version>1.5.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.pivot</groupId>
+            <artifactId>pivot-web</artifactId>
+            <version>1.5.1</version>
+        </dependency>
     </dependencies>
     <reporting>
         <plugins>
