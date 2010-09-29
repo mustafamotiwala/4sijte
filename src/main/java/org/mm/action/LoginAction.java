@@ -10,7 +10,7 @@ import javax.swing.KeyStroke;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import org.jdesktop.swingx.JXLoginPane;
-import org.mm.Application;
+import org.mm.PIMApplication;
 import org.mm.contact.GoogleLoginServiceAdapter;
 
 /**
@@ -35,11 +35,8 @@ public class LoginAction extends AbstractAction {
     public void actionPerformed(ActionEvent evt) {
         JXLoginPane loginPane = new JXLoginPane(loginService);
         loginPane.setMessage("Please enter your account information.");
-        Application application = Application.getInstance();
-        if (JXLoginPane.Status.SUCCEEDED == JXLoginPane.showLoginDialog(application, loginPane)) {
-            application.setUserName(loginPane.getUserName());
-            application.makeBusy();
-            Executors.newSingleThreadExecutor().execute(loader);
-        }
+//        if (JXLoginPane.Status.SUCCEEDED == JXLoginPane.showLoginDialog(application, loginPane)) {
+//            Executors.newSingleThreadExecutor().execute(loader);
+//        }
     }
 }
