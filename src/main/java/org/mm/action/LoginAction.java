@@ -1,16 +1,9 @@
 package org.mm.action;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
-import java.util.concurrent.Executors;
-import javax.swing.AbstractAction;
-import javax.swing.KeyStroke;
-
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
+import org.apache.pivot.wtk.Action;
 import org.jdesktop.swingx.JXLoginPane;
-import org.mm.PIMApplication;
 import org.mm.contact.GoogleLoginServiceAdapter;
 
 /**
@@ -18,25 +11,17 @@ import org.mm.contact.GoogleLoginServiceAdapter;
  * Date: May 17, 2010
  * Time: 9:26:33 PM
  */
-public class LoginAction extends AbstractAction {
+public class LoginAction extends Action {
     @Inject
     private GoogleLoginServiceAdapter loginService;
     @Inject
     @Named("contactLoader")
     private Runnable loader;
 
-    public LoginAction() {
-        super("Login");
-        putValue(MNEMONIC_KEY, KeyEvent.VK_L);
-        putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_L, InputEvent.CTRL_DOWN_MASK));
-    }
-
     @Override
-    public void actionPerformed(ActionEvent evt) {
-        JXLoginPane loginPane = new JXLoginPane(loginService);
-        loginPane.setMessage("Please enter your account information.");
-//        if (JXLoginPane.Status.SUCCEEDED == JXLoginPane.showLoginDialog(application, loginPane)) {
-//            Executors.newSingleThreadExecutor().execute(loader);
-//        }
+    public void perform() {
+        System.out.println("Login Action Invoked!");
+//        JXLoginPane loginPane = new JXLoginPane(loginService);
+//        loginPane.setMessage("Please enter your account information.");
     }
 }

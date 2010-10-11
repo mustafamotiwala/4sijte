@@ -1,7 +1,13 @@
-<Window title="Hello WTKX!" maximized="true" xmlns:wtkx="http://pivot.apache.org/wtkx" xmlns="org.apache.pivot.wtk">
+<Window title="4SiJte" maximized="true" xmlns:wtkx="http://pivot.apache.org/wtkx" xmlns="org.apache.pivot.wtk">
+    <!--<Window.ActionMapping action="loginAction" keyStroke="CTRL-L"/>-->
     <content>
         <Label text="Hello WTKX!"
             styles="{font:'DejaVu Sans 44', color:'#ffAF44',
                 horizontalAlignment:'center', verticalAlignment:'center'}"/>
     </content>
 </Window>
+<!--<Frame title="4SiJte" maximized="true" xmlns:wtkx="http://pivot.apache.org/wtkx" xmlns="org.apache.pivot.wtk">-->
+        <!--<actionMappings>-->
+            <!--<Window.ActionMapping action="loginAction" keyStroke="CTRL-L"/>-->
+        <!--</actionMappings>-->
+    <!--</Frame>-->

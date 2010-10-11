@@ -2,12 +2,12 @@ package org.mm;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.Action;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
 import com.google.inject.TypeLiteral;
 import com.google.inject.name.Names;
+import org.apache.pivot.wtk.Action;
 import org.mm.action.LoginAction;
 
 /**
