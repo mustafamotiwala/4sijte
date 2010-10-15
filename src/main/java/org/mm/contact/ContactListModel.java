@@ -1,14 +1,14 @@
 package org.mm.contact;
 
-import java.util.Collections;
-import java.util.List;
-import javax.swing.AbstractListModel;
-
 import com.google.gdata.data.contacts.ContactEntry;
 import com.google.gdata.data.extensions.FamilyName;
 import com.google.gdata.data.extensions.FullName;
 import com.google.gdata.data.extensions.GivenName;
 import com.google.gdata.data.extensions.Name;
+
+import javax.swing.*;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * User: Mustafa Motiwala

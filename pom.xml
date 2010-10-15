@@ -44,7 +44,6 @@
         </plugins>
     </build>
     <dependencies>
-
         <dependency>
             <groupId>com.google.gdata</groupId>
             <artifactId>gdata-core-1.0</artifactId>
@@ -92,7 +91,7 @@
             <artifactId>google-collections</artifactId>
             <version>1.0-rc5</version>
         </dependency>
-        <dependency>
+<!--        <dependency>
             <groupId>org.swinglabs</groupId>
             <artifactId>swingx</artifactId>
             <version>1.6</version>
@@ -108,7 +107,7 @@
             <artifactId>miglayout</artifactId>
             <classifier>sources</classifier>
             <version>3.7.3.1</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.apache.pivot</groupId>
             <artifactId>pivot-core</artifactId>

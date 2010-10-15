@@ -1,20 +1,10 @@
 package org.mm.contact;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
-
-import com.google.gdata.client.Query;
 import com.google.gdata.client.contacts.ContactsService;
-import com.google.gdata.data.contacts.ContactFeed;
-import com.google.gdata.util.ServiceException;
-import com.google.gdata.util.ServiceForbiddenException;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.mm.PIMApplication;
 import org.mm.contact.ui.ContactTab;
 
 /**

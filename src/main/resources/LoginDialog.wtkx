@@ -1,0 +1,24 @@
+<Dialog wtkx:id="dialog" title="Dialog"
+    xmlns:wtkx="http://pivot.apache.org/wtkx"
+    xmlns="org.apache.pivot.wtk">
+    <content>
+        <TablePane>
+            <columns>
+                <TablePane.Column width="1*" />
+            </columns>
+            <rows>
+                <TablePane.Row height="1*">
+                    <Label text="Username: " />
+                </TablePane.Row>
+                <TablePane.Row>
+                    <Label text="Password: " />
+                </TablePane.Row>
+                <TablePane.Row height="-1">
+                    <BoxPane styles="{horizontalAlignment:'center', padding:6}">
+                        <PushButton wtkx:id="activityButton" styles="{minimumAspectRatio:3}"/>
+                    </BoxPane>
+                </TablePane.Row>
+            </rows>
+        </TablePane>
+    </content>
+</Dialog>

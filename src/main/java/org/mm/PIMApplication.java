@@ -46,22 +46,24 @@ public class PIMApplication implements Application {
 
     private String userName;
     private URL serviceUrl;
+
     private Window window;
 
     @Override
     public void startup(Display display, Map<String, String> properties) throws Exception {
         WTKXSerializer wtkxSerializer = new WTKXSerializer();
         Action.getNamedActions().put("loginAction",app.loginAction);
+        app.loginAction.setEnabled(true);
         log.warn("Preparing to de-serialize window.");
         window = (Window)wtkxSerializer.readObject(app,"PIMApplication.wtkx.xml");
-//        Label helloWorldLabel = (Label) wtkxSerializer.get("lblHelloWorld");
-//        helloWorldLabel.setText(String.format("This is the time: %1$td %1$tH:%1$tM:%1$tS", Calendar.getInstance()));
+        app.window = window;
         window.open(display);
+        window.requestFocus();
     }
 
     @Override
     public boolean shutdown(boolean optional) throws Exception {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
+        return false;
     }
 
     @Override
@@ -92,5 +94,17 @@ public class PIMApplication implements Application {
 
     public void setServiceUrl(URL serviceUrl) {
         this.serviceUrl = serviceUrl;
+    }
+
+    public Window getWindow() {
+        return window;
+    }
+
+    public void setWindow(Window window) {
+        this.window = window;
+    }
+
+    public static PIMApplication getInstance(){
+        return app;
     }
 }

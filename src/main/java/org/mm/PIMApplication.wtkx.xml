@@ -4,9 +4,7 @@
         xmlns:content="org.apache.pivot.wtk.content"
         xmlns="org.apache.pivot.wtk">
     <actionMappings>
-        <Window.ActionMapping action="cut" keyStroke="CTRL-X"/>
-        <Window.ActionMapping action="copy" keyStroke="CTRL-C"/>
-        <Window.ActionMapping action="paste" keyStroke="CTRL-V"/>
+        <Window.ActionMapping action="loginAction" keyStroke="CTRL-L" />
     </actionMappings>
     <menuBar>
         <MenuBar>
@@ -16,42 +14,9 @@
                         <Menu>
                             <sections>
                                 <Menu.Section>
-                                    <Menu.Item action="fileNew">
+                                    <Menu.Item action="loginAction">
                                         <buttonData>
-                                            <content:ButtonData text="New"/>
-                                        </buttonData>
-                                    </Menu.Item>
-                                    <Menu.Item action="fileOpen">
-                                        <buttonData>
-                                            <content:ButtonData text="Open"/>
-                                        </buttonData>
-                                    </Menu.Item>
-                                </Menu.Section>
-                            </sections>
-                        </Menu>
-                    </menu>
-                </MenuBar.Item>
-                <MenuBar.Item buttonData="Edit">
-                    <menu>
-                        <Menu>
-                            <sections>
-                                <Menu.Section>
-                                    <Menu.Item action="cut">
-                                        <buttonData>
-                                            <content:MenuItemData text="Cut"
-                                            keyboardShortcut="CTRL-X"/>
-                                        </buttonData>
-                                    </Menu.Item>
-                                    <Menu.Item action="copy">
-                                        <buttonData>
-                                            <content:MenuItemData text="Copy"
-                                            keyboardShortcut="CTRL-C"/>
-                                        </buttonData>
-                                    </Menu.Item>
-                                    <Menu.Item action="paste">
-                                        <buttonData>
-                                            <content:MenuItemData text="Paste"
-                                            keyboardShortcut="CTRL-V"/>
+                                            <content:MenuItemData text="Login" keyboardShortcut="CTRL-L" />
                                         </buttonData>
                                     </Menu.Item>
                                 </Menu.Section>
@@ -62,32 +27,6 @@
             </items>
         </MenuBar>
     </menuBar>
-
-<!--    <actionMappings>
-        <Window.ActionMapping action="loginAction" keyStroke="CTRL-L"/>
-    </actionMappings>-->
-
-    <!--<menuBar>
-        <MenuBar>
-            <items>
-                <MenuBar.Item buttonData="File">
-                    <menu>
-                        <Menu>
-                            <sections>
-                                <Menu.Section>
-                                    <Menu.Item action="loginAction">
-                                        <buttonData>
-                                            <content:MenuItemData text="Login..." keyboardShortcut="CTRL-L" />
-                                        </buttonData>
-                                    </Menu.Item>
-                                </Menu.Section>
-                            </sections>
-                        </Menu>
-                    </menu>
-                </MenuBar.Item>
-            </items>
-        </MenuBar>
-    </menuBar>-->
     <content>
         <Label text="Hello WTKX!"
             styles="{font:'DejaVu Sans 44', color:'#ffAF44',
