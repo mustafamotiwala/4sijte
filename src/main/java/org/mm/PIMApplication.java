@@ -52,7 +52,7 @@ public class PIMApplication implements Application {
     public void startup(Display display, Map<String, String> properties) throws Exception {
         WTKXSerializer wtkxSerializer = new WTKXSerializer();
         Action.getNamedActions().put("loginAction",app.loginAction);
-        log.warn("Preparing to deserialize window.");
+        log.warn("Preparing to de-serialize window.");
         window = (Window)wtkxSerializer.readObject(app,"PIMApplication.wtkx.xml");
 //        Label helloWorldLabel = (Label) wtkxSerializer.get("lblHelloWorld");
 //        helloWorldLabel.setText(String.format("This is the time: %1$td %1$tH:%1$tM:%1$tS", Calendar.getInstance()));

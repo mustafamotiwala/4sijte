@@ -21,6 +21,9 @@ public class LoginAction extends Action {
     @Override
     public void perform() {
         System.out.println("Login Action Invoked!");
+        if(loginService == null){
+            System.out.println("Login Service is null!");
+        }
 //        JXLoginPane loginPane = new JXLoginPane(loginService);
 //        loginPane.setMessage("Please enter your account information.");
     }
