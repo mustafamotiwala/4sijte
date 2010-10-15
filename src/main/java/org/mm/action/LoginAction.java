@@ -5,6 +5,7 @@ import com.google.inject.name.Named;
 import org.apache.pivot.serialization.SerializationException;
 import org.apache.pivot.wtk.Action;
 import org.apache.pivot.wtk.Dialog;
+import org.apache.pivot.wtk.TextInput;
 import org.apache.pivot.wtk.Window;
 import org.apache.pivot.wtkx.WTKXSerializer;
 import org.mm.PIMApplication;
@@ -33,6 +34,7 @@ public class LoginAction extends Action {
         WTKXSerializer serializer = new WTKXSerializer();
         try {
             Dialog dlg = (Dialog)serializer.readObject(Dialog.class,"/LoginDialog.wtkx");
+            TextInput username;
             Window parent = PIMApplication.getInstance().getWindow();
             dlg.open(parent);
         } catch (IOException e) {

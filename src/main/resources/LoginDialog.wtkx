@@ -2,21 +2,22 @@
     xmlns:wtkx="http://pivot.apache.org/wtkx"
     xmlns="org.apache.pivot.wtk">
     <content>
-        <TablePane>
+        <TablePane styles="{verticalSpacing:6}">
             <columns>
                 <TablePane.Column width="1*" />
+                <TablePane.Column width="2*" />
             </columns>
             <rows>
-                <TablePane.Row height="1*">
+                <TablePane.Row height="1*" >
                     <Label text="Username: " />
+                    <TextInput wtkx:id="username"/>
                 </TablePane.Row>
-                <TablePane.Row>
+                <TablePane.Row height="1*" >
                     <Label text="Password: " />
+                    <TextInput wtkx:id="password" password="true"/>
                 </TablePane.Row>
-                <TablePane.Row height="-1">
-                    <BoxPane styles="{horizontalAlignment:'center', padding:6}">
-                        <PushButton wtkx:id="activityButton" styles="{minimumAspectRatio:3}"/>
-                    </BoxPane>
+                <TablePane.Row height="1*">
+                    <PushButton wtkx:id="activityButton" styles="{minimumAspectRatio:3}" buttonData="Login"/>
                 </TablePane.Row>
             </rows>
         </TablePane>
