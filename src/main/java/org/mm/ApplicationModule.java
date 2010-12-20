@@ -8,6 +8,7 @@ import com.google.inject.Scopes;
 import com.google.inject.TypeLiteral;
 import com.google.inject.name.Names;
 import org.apache.pivot.wtk.Action;
+import org.apache.pivot.wtk.ButtonPressListener;
 import org.mm.action.LoginAction;
 
 /**
@@ -19,6 +20,7 @@ public class ApplicationModule extends AbstractModule {
     @Override
     protected void configure() {
         bind(Action.class).annotatedWith(Names.named("loginAction")).to(LoginAction.class).in(Scopes.SINGLETON);
+//        bind(ButtonPressListener.class).annotatedWith(Names.named("loginButtonListener")).to(LoginAction.LoginButtonPressListener.class).in(Scopes.SINGLETON);
         bind(new TypeLiteral<List<ApplicationTab>>() {}).to(new TypeLiteral<ArrayList<ApplicationTab>>(){}).in(Scopes.SINGLETON);
     }
 }

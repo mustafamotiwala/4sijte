@@ -15,9 +15,9 @@ public class GoogleLoginServiceAdapter {
     @Named("svcContacts")
     private ContactsService service;
 
-    public boolean authenticate(String username, char[] password) throws Exception {
+    public boolean authenticate(String username, String password) throws Exception {
         try {
-            service.setUserCredentials(username, new String(password));
+            service.setUserCredentials(username, password);
             return true;
         } catch (AuthenticationException ae) {
             return false;

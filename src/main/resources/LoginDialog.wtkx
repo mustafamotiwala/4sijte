@@ -1,23 +1,25 @@
-<Dialog wtkx:id="dialog" title="Dialog"
+<Dialog wtkx:id="loginDialog" title="Login"
     xmlns:wtkx="http://pivot.apache.org/wtkx"
+    xmlns:terra="org.apache.pivot.skin.terra"
     xmlns="org.apache.pivot.wtk">
     <content>
-        <TablePane styles="{verticalSpacing:6}">
+        <TablePane styles="{verticalSpacing:6}" preferredWidth="320">
             <columns>
                 <TablePane.Column width="1*" />
                 <TablePane.Column width="2*" />
             </columns>
             <rows>
                 <TablePane.Row height="1*" >
-                    <Label text="Username: " />
-                    <TextInput wtkx:id="username"/>
+                    <Label styles="{font:'Liberation Sans 12' }" text="Username: " />
+                    <TextInput styles="{font:'Liberation Sans 12' }"  wtkx:id="username" prompt="Username"/>
                 </TablePane.Row>
                 <TablePane.Row height="1*" >
-                    <Label text="Password: " />
-                    <TextInput wtkx:id="password" password="true"/>
+                    <Label text="Password: " styles="{font:'Liberation Sans 12'}" />
+                    <TextInput wtkx:id="password" password="true" prompt="Password"/>
                 </TablePane.Row>
                 <TablePane.Row height="1*">
-                    <PushButton wtkx:id="activityButton" styles="{minimumAspectRatio:3}" buttonData="Login"/>
+                    <PushButton wtkx:id="loginButton" styles="{minimumAspectRatio:3}" buttonData="Login"/>
+                    <ActivityIndicator wtkx:id="loginActivity" styles="{color:16}" preferredWidth="26" preferredHeight="26"/>
                 </TablePane.Row>
             </rows>
         </TablePane>

@@ -44,7 +44,7 @@ public class PIMApplication implements Application {
     @Inject
     private List<ApplicationTab> applicationTabs = new ArrayList<ApplicationTab>(0);
 
-    private String userName;
+//    private String userName;
     private URL serviceUrl;
 
     private Window window;
@@ -58,7 +58,6 @@ public class PIMApplication implements Application {
         window = (Window)wtkxSerializer.readObject(app,"PIMApplication.wtkx.xml");
         app.window = window;
         window.open(display);
-        window.requestFocus();
     }
 
     @Override
@@ -80,18 +79,18 @@ public class PIMApplication implements Application {
         DesktopApplicationContext.main(PIMApplication.class,args);
     }
 
-    public String getUserName() {
-        return userName;
-    }
+//    public String getUserName() {
+//        return userName;
+//    }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-        try {
-            setServiceUrl(new URL(String.format("http://www.google.com/m8/feeds/contacts/%1$s/full", userName)));
-        } catch (MalformedURLException ignored) {
-        }
-    }
-
+//    public void setUserName(String userName) {
+//        this.userName = userName;
+//        try {
+//            setServiceUrl(new URL(String.format("http://www.google.com/m8/feeds/contacts/%1$s/full", userName)));
+//        } catch (MalformedURLException ignored) {
+//        }
+//    }
+//
     public void setServiceUrl(URL serviceUrl) {
         this.serviceUrl = serviceUrl;
     }
