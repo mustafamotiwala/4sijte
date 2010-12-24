@@ -2,15 +2,10 @@ package org.mm.action;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.pivot.serialization.SerializationException;
-import org.apache.pivot.wtk.Action;
-import org.apache.pivot.wtk.ActivityIndicator;
-import org.apache.pivot.wtk.Button;
-import org.apache.pivot.wtk.ButtonPressListener;
-import org.apache.pivot.wtk.Dialog;
-import org.apache.pivot.wtk.PushButton;
-import org.apache.pivot.wtk.TextInput;
-import org.apache.pivot.wtk.Window;
+import org.apache.pivot.wtk.*;
 import org.apache.pivot.wtkx.WTKXSerializer;
 import org.mm.ApplicationTab;
 import org.mm.PIMApplication;
@@ -29,6 +24,7 @@ import java.util.concurrent.Executors;
  * Time: 9:26:33 PM
  */
 public class LoginAction extends Action {
+    private static final Log log = LogFactory.getLog(LoginAction.class);
     @Inject
     private GoogleLoginServiceAdapter loginService;
     private LoginButtonPressListener loginButtonListener;
@@ -68,11 +64,8 @@ public class LoginAction extends Action {
     }
 
     void login(){
-        loginButton.setEnabled(false);
-        username.setEnabled(false);
-        password.setEnabled(false);
+        makeBusy();
         //TODO: execute a thread to authenticate.
-        loginProgress.setActive(true);
         ExecutorService executor = Executors.newSingleThreadExecutor();
         AuthenticationCallable loginCallable = new AuthenticationCallable(loginService, this);
         executor.submit(loginCallable);
@@ -82,8 +75,24 @@ public class LoginAction extends Action {
         if(status){
             loginDialog.close();
         }else{
-            
+            log.warn("Unable to authenticate!");
+            Alert.alert(MessageType.ERROR, "Unable to authenticate.",loginDialog);
         }
+        makeAvailable();
+    }
+
+    private void makeBusy(){
+        loginButton.setEnabled(false);
+        username.setEnabled(false);
+        password.setEnabled(false);
+        loginProgress.setActive(true);
+    }
+
+    private void makeAvailable(){
+        loginButton.setEnabled(true);
+        username.setEnabled(true);
+        password.setEnabled(true);
+        loginProgress.setActive(false);
     }
 
 
@@ -122,6 +131,6 @@ class AuthenticationCallable implements Callable<Boolean>{
         if(loginService.authenticate(action.getUsername(), action.getPassword()))
             returnVal = Boolean.TRUE;
         action.loginCompleted(returnVal);
-        return returnVal;  //To change body of implemented methods use File | Settings | File Templates.
+        return returnVal;
     }
 }
