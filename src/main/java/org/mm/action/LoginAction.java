@@ -80,7 +80,7 @@ public class LoginAction extends Action {
         }
         makeAvailable();
     }
-
+    
     private void makeBusy(){
         loginButton.setEnabled(false);
         username.setEnabled(false);
