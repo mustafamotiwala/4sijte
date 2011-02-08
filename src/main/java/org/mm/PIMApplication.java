@@ -1,11 +1,5 @@
 package org.mm;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-
 import com.google.gdata.client.contacts.ContactsService;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
@@ -14,15 +8,13 @@ import com.google.inject.name.Named;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.pivot.collections.Map;
-import org.apache.pivot.wtk.Action;
-import org.apache.pivot.wtk.Application;
-import org.apache.pivot.wtk.DesktopApplicationContext;
-import org.apache.pivot.wtk.Display;
-import org.apache.pivot.wtk.Frame;
-import org.apache.pivot.wtk.Label;
-import org.apache.pivot.wtk.Window;
+import org.apache.pivot.wtk.*;
 import org.apache.pivot.wtkx.WTKXSerializer;
 import org.mm.contact.ContactModule;
+
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * User: Mustafa Motiwala
@@ -44,7 +36,6 @@ public class PIMApplication implements Application {
     @Inject
     private List<ApplicationTab> applicationTabs = new ArrayList<ApplicationTab>(0);
 
-//    private String userName;
     private URL serviceUrl;
 
     private Window window;
@@ -55,7 +46,7 @@ public class PIMApplication implements Application {
         Action.getNamedActions().put("loginAction",app.loginAction);
         app.loginAction.setEnabled(true);
         log.warn("Preparing to de-serialize window.");
-        window = (Window)wtkxSerializer.readObject(app,"PIMApplication.wtkx.xml");
+        window = (Window)wtkxSerializer.readObject(app,"PIMApplication.wtkx");
         app.window = window;
         window.open(display);
     }
@@ -79,18 +70,6 @@ public class PIMApplication implements Application {
         DesktopApplicationContext.main(PIMApplication.class,args);
     }
 
-//    public String getUserName() {
-//        return userName;
-//    }
-
-//    public void setUserName(String userName) {
-//        this.userName = userName;
-//        try {
-//            setServiceUrl(new URL(String.format("http://www.google.com/m8/feeds/contacts/%1$s/full", userName)));
-//        } catch (MalformedURLException ignored) {
-//        }
-//    }
-//
     public void setServiceUrl(URL serviceUrl) {
         this.serviceUrl = serviceUrl;
     }
