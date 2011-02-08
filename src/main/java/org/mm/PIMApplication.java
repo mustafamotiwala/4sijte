@@ -7,9 +7,9 @@ import com.google.inject.Injector;
 import com.google.inject.name.Named;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.pivot.beans.BXMLSerializer;
 import org.apache.pivot.collections.Map;
 import org.apache.pivot.wtk.*;
-import org.apache.pivot.wtkx.WTKXSerializer;
 import org.mm.contact.ContactModule;
 
 import java.net.URL;
@@ -42,11 +42,11 @@ public class PIMApplication implements Application {
 
     @Override
     public void startup(Display display, Map<String, String> properties) throws Exception {
-        WTKXSerializer wtkxSerializer = new WTKXSerializer();
+        BXMLSerializer wtkxSerializer = new BXMLSerializer();
         Action.getNamedActions().put("loginAction",app.loginAction);
         app.loginAction.setEnabled(true);
         log.warn("Preparing to de-serialize window.");
-        window = (Window)wtkxSerializer.readObject(app,"PIMApplication.wtkx");
+        window = (Window)wtkxSerializer.readObject(this.getClass().getClassLoader().getResourceAsStream("org/mm/PIMApplication.bxml"));
         app.window = window;
         window.open(display);
     }

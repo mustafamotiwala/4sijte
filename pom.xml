@@ -47,22 +47,22 @@
         <dependency>
             <groupId>com.google.gdata</groupId>
             <artifactId>gdata-core-1.0</artifactId>
-            <version>1.41.3</version>
+            <version>1.41.5</version>
         </dependency>
         <dependency>
             <groupId>com.google.gdata</groupId>
             <artifactId>gdata-contacts-3.0</artifactId>
-            <version>1.41.3</version>
+            <version>1.41.5</version>
         </dependency>
         <dependency>
             <groupId>com.google.gdata</groupId>
             <artifactId>gdata-base-1.0</artifactId>
-            <version>1.41.3</version>
+            <version>1.41.5</version>
         </dependency>
         <dependency>
             <groupId>com.google.gdata</groupId>
             <artifactId>gdata-client-1.0</artifactId>
-            <version>1.41.3</version>
+            <version>1.41.5</version>
         </dependency>
         <dependency>
             <groupId>com.google.inject</groupId>
@@ -89,27 +89,27 @@
         <dependency>
             <groupId>com.google.collections</groupId>
             <artifactId>google-collections</artifactId>
-            <version>1.0-rc5</version>
+            <version>1.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.pivot</groupId>
             <artifactId>pivot-core</artifactId>
-            <version>1.5.1</version>
+            <version>2.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.pivot</groupId>
             <artifactId>pivot-wtk</artifactId>
-            <version>1.5.1</version>
+            <version>2.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.pivot</groupId>
             <artifactId>pivot-wtk-terra</artifactId>
-            <version>1.5.1</version>
+            <version>2.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.pivot</groupId>
             <artifactId>pivot-web</artifactId>
-            <version>1.5.1</version>
+            <version>2.0</version>
         </dependency>
     </dependencies>
     <reporting>

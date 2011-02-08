@@ -4,9 +4,9 @@ import com.google.inject.Inject;
 import com.google.inject.name.Named;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.pivot.beans.BXMLSerializer;
 import org.apache.pivot.serialization.SerializationException;
 import org.apache.pivot.wtk.*;
-import org.apache.pivot.wtkx.WTKXSerializer;
 import org.mm.ApplicationTab;
 import org.mm.PIMApplication;
 import org.mm.contact.GoogleLoginServiceAdapter;
@@ -40,26 +40,26 @@ public class LoginAction extends Action {
     private ActivityIndicator loginProgress;
 
     public LoginAction(){
-        WTKXSerializer serializer = new WTKXSerializer();
+        BXMLSerializer serializer = new BXMLSerializer();
         loginButtonListener = new LoginButtonPressListener(this);
 
         try {
-            loginDialog=(Dialog)serializer.readObject(Dialog.class,"/LoginDialog.wtkx");
+            loginDialog=(Dialog)serializer.readObject(getClass().getClassLoader().getResourceAsStream("LoginDialog.bxml"));
         } catch (IOException e) {
             e.printStackTrace();
         } catch (SerializationException e) {
             e.printStackTrace();
         }
-        username = (TextInput) serializer.get("username");
-        password = (TextInput) serializer.get("password");
-        loginButton = (PushButton)serializer.get("loginButton");
-        loginProgress = (ActivityIndicator) serializer.get("loginActivity");
+        username = (TextInput) serializer.getNamespace().get("username");
+        password = (TextInput) serializer.getNamespace().get("password");
+        loginButton = (PushButton)serializer.getNamespace().get("loginButton");
+        loginProgress = (ActivityIndicator) serializer.getNamespace().get("loginActivity");
         loginButton.getButtonPressListeners().add(loginButtonListener);
         loginDialog.setModal(true);
     }
 
     @Override
-    public void perform() {
+    public void perform(Component c) {
         Window parent = PIMApplication.getInstance().getWindow();
         loginDialog.open(parent);
     }

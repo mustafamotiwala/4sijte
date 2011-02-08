@@ -28,16 +28,6 @@
         </MenuBar>
     </menuBar>
     <content>
-        <TabPane>
-            <tabs>
-                <BoxPane TabPane.label="Welcome" styles="{horizontalAlignment:'center', verticalAlignment:'center'}" />
-            </tabs>
-            <corner>
-                <BoxPane wtkx:id="cornerBoxPane" styles="{horizontalAlignment:'right'}">
-                    <TextInput/>
-                </BoxPane>
-            </corner>
-        </TabPane>
     </content>
 </Frame>
 
