@@ -14,9 +14,7 @@ import org.mm.contact.GoogleLoginServiceAdapter;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 
 /**
  * TODO: Abbas: There is an error in LoginAction when hitting enter it does not attempt to login.
@@ -28,74 +26,31 @@ public class LoginAction extends Action {
     private static final Log log = LogFactory.getLog(LoginAction.class);
     @Inject
     private GoogleLoginServiceAdapter loginService;
-    private LoginButtonPressListener loginButtonListener;
     @Inject @Named("contactLoader")
     private Callable loader;
     @Inject
     List<ApplicationTab> tabs= Collections.emptyList();
 
-    private Dialog loginDialog;
     private TextInput username, password;
-    private PushButton loginButton;
-    private ActivityIndicator loginProgress;
 
     public LoginAction(){
-        BXMLSerializer serializer = new BXMLSerializer();
-        loginButtonListener = new LoginButtonPressListener(this);
-
-        try {
-            loginDialog=(Dialog)serializer.readObject(getClass().getClassLoader().getResourceAsStream("LoginDialog.bxml"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SerializationException e) {
-            e.printStackTrace();
-        }
-        username = (TextInput) serializer.getNamespace().get("username");
-        password = (TextInput) serializer.getNamespace().get("password");
-        loginButton = (PushButton)serializer.getNamespace().get("loginButton");
-        loginProgress = (ActivityIndicator) serializer.getNamespace().get("loginActivity");
-        loginButton.getButtonPressListeners().add(loginButtonListener);
-        loginDialog.setModal(true);
     }
 
     @Override
     public void perform(Component c) {
-        Window parent = PIMApplication.getInstance().getWindow();
-        loginDialog.open(parent);
-    }
-
-    void login(){
-        makeBusy();
-        //TODO: execute a thread to authenticate.
         ExecutorService executor = Executors.newSingleThreadExecutor();
         AuthenticationCallable loginCallable = new AuthenticationCallable(loginService, this);
-        executor.submit(loginCallable);
-    }
-
-    void loginCompleted(boolean status){
-        if(status){
-            loginDialog.close();
-        }else{
-            log.warn("Unable to authenticate!");
-            Alert.alert(MessageType.ERROR, "Unable to authenticate.",loginDialog);
+        Future<Boolean> authenticationFuture=executor.submit(loginCallable);
+        while(!authenticationFuture.isDone()){
         }
-        makeAvailable();
+        try {
+            log.debug("Login Status:"+authenticationFuture.get());
+        } catch (InterruptedException e) {
+            log.debug(e);
+        } catch (ExecutionException e) {
+            log.debug(e);
+        }
     }
-    
-    private void makeBusy(){
-        loginButton.setEnabled(false);
-        username.setEnabled(false);
-        password.setEnabled(false);
-        loginProgress.setActive(true);
-    }
-
-    private void makeAvailable(){
-        loginButton.setEnabled(true);
-        username.setEnabled(true);
-        password.setEnabled(true);
-        loginProgress.setActive(false);
-    }
-
 
     public String getUsername(){
         return username.getText();
@@ -103,17 +58,6 @@ public class LoginAction extends Action {
 
     public String getPassword(){
         return password.getText();
-    }
-}
-
-class LoginButtonPressListener implements ButtonPressListener{
-    private LoginAction callbackAction;
-    LoginButtonPressListener(LoginAction action){
-        callbackAction = action;
-    }
-    @Override
-    public void buttonPressed(Button button) {
-        callbackAction.login();
     }
 }
 
@@ -128,10 +72,6 @@ class AuthenticationCallable implements Callable<Boolean>{
 
     @Override
     public Boolean call() throws Exception {
-        Boolean returnVal = Boolean.FALSE;
-        if(loginService.authenticate(action.getUsername(), action.getPassword()))
-            returnVal = Boolean.TRUE;
-        action.loginCompleted(returnVal);
-        return returnVal;
+        return loginService.authenticate(action.getUsername(), action.getPassword());
     }
 }

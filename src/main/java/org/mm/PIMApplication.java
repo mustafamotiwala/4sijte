@@ -43,9 +43,9 @@ public class PIMApplication implements Application {
     @Override
     public void startup(Display display, Map<String, String> properties) throws Exception {
         BXMLSerializer wtkxSerializer = new BXMLSerializer();
-        Action.getNamedActions().put("loginAction",app.loginAction);
+        Action.getNamedActions().put("login",app.loginAction);
         app.loginAction.setEnabled(true);
-        log.warn("Preparing to de-serialize window.");
+        log.info("Preparing to de-serialize window.");
         window = (Window)wtkxSerializer.readObject(this.getClass().getClassLoader().getResourceAsStream("org/mm/PIMApplication.bxml"));
         app.window = window;
         window.open(display);
@@ -58,10 +58,12 @@ public class PIMApplication implements Application {
 
     @Override
     public void suspend() throws Exception {
+        log.info("Application requested to go to sleep...");
     }
 
     @Override
     public void resume() throws Exception {
+        log.info("Application has woken up.");
     }
 
     public static void main(String args[]) {
