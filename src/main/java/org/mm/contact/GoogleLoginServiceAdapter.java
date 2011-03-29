@@ -4,6 +4,8 @@ import com.google.gdata.client.contacts.ContactsService;
 import com.google.gdata.util.AuthenticationException;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.Callable;
 
@@ -18,6 +20,8 @@ public class GoogleLoginServiceAdapter implements Callable<Boolean> {
     private ContactsService service;
 
     private String username, password;
+
+    private static Logger log = LoggerFactory.getLogger(GoogleLoginServiceAdapter.class);
 
     public void setUsername(String username) {
         this.username = username;
@@ -37,6 +41,7 @@ public class GoogleLoginServiceAdapter implements Callable<Boolean> {
             service.setUserCredentials(username, password);
             return true;
         } catch (AuthenticationException ae) {
+            log.info("Unable to authenticate: ", ae);
             return false;
         }
     }
