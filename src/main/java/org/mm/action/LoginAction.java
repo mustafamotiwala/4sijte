@@ -36,18 +36,21 @@ public class LoginAction extends Action {
 
     @Override
     public void perform(Component c) {
+        username = (TextInput)c.getParent().getNamedComponent("username");
+        password = (TextInput)c.getParent().getNamedComponent("password");
         ExecutorService executor = Executors.newSingleThreadExecutor();
-        AuthenticationCallable loginCallable = new AuthenticationCallable(loginService, this);
-        Future<Boolean> authenticationFuture=executor.submit(loginCallable);
-        while(!authenticationFuture.isDone()){
-        }
-        try {
-            log.debug("Login Status:"+authenticationFuture.get());
-        } catch (InterruptedException e) {
-            log.debug("Exception while logging in",e);
-        } catch (ExecutionException e) {
-            log.debug("Exception while logging in", e);
-        }
+        loginService.setUsername(username.getText());
+        loginService.setPassword(password.getText());
+        Future<Boolean> authenticationFuture=executor.submit(loginService);
+//        while(!authenticationFuture.isDone()){
+//        }
+//        try {
+//            log.debug("Login Status:"+authenticationFuture.get());
+//        } catch (InterruptedException e) {
+//            log.debug("Exception while logging in",e);
+//        } catch (ExecutionException e) {
+//            log.debug("Exception while logging in", e);
+//        }
     }
 
     public String getUsername(){
@@ -59,17 +62,17 @@ public class LoginAction extends Action {
     }
 }
 
-class AuthenticationCallable implements Callable<Boolean>{
-    private GoogleLoginServiceAdapter loginService;
-    private LoginAction action;
-
-    AuthenticationCallable(GoogleLoginServiceAdapter loginService, LoginAction action) {
-        this.loginService = loginService;
-        this.action = action;
-    }
-
-    @Override
-    public Boolean call() throws Exception {
-        return loginService.authenticate(action.getUsername(), action.getPassword());
-    }
-}
+//class AuthenticationCallable implements Callable<Boolean>{
+//    private GoogleLoginServiceAdapter loginService;
+//    private LoginAction action;
+//
+//    AuthenticationCallable(GoogleLoginServiceAdapter loginService, LoginAction action) {
+//        this.loginService = loginService;
+//        this.action = action;
+//    }
+//
+//    @Override
+//    public Boolean call() throws Exception {
+//        return loginService.authenticate(action.getUsername(), action.getPassword());
+//    }
+//}
