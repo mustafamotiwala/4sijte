@@ -5,12 +5,12 @@ import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.name.Named;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.pivot.beans.BXMLSerializer;
 import org.apache.pivot.collections.Map;
 import org.apache.pivot.wtk.*;
 import org.mm.contact.ContactModule;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ import java.util.List;
  */
 @SuppressWarnings("unused")
 public class PIMApplication implements Application {
-    private static final Log log = LogFactory.getLog(PIMApplication.class);
+    private static final Logger log = LoggerFactory.getLogger(PIMApplication.class);
 
     private static PIMApplication app;
 

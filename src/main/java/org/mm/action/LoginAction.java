@@ -2,16 +2,14 @@ package org.mm.action;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.pivot.beans.BXMLSerializer;
-import org.apache.pivot.serialization.SerializationException;
-import org.apache.pivot.wtk.*;
+import org.apache.pivot.wtk.Action;
+import org.apache.pivot.wtk.Component;
+import org.apache.pivot.wtk.TextInput;
 import org.mm.ApplicationTab;
-import org.mm.PIMApplication;
 import org.mm.contact.GoogleLoginServiceAdapter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.*;
@@ -23,7 +21,7 @@ import java.util.concurrent.*;
  * Time: 9:26:33 PM
  */
 public class LoginAction extends Action {
-    private static final Log log = LogFactory.getLog(LoginAction.class);
+    private static final Logger log = LoggerFactory.getLogger(LoginAction.class);
     @Inject
     private GoogleLoginServiceAdapter loginService;
     @Inject @Named("contactLoader")
@@ -46,9 +44,9 @@ public class LoginAction extends Action {
         try {
             log.debug("Login Status:"+authenticationFuture.get());
         } catch (InterruptedException e) {
-            log.debug(e);
+            log.debug("Exception while logging in",e);
         } catch (ExecutionException e) {
-            log.debug(e);
+            log.debug("Exception while logging in", e);
         }
     }
 

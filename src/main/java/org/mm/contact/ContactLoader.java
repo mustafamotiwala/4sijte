@@ -1,10 +1,5 @@
 package org.mm.contact;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.concurrent.Callable;
-
 import com.google.gdata.client.Query;
 import com.google.gdata.client.contacts.ContactsService;
 import com.google.gdata.data.contacts.ContactFeed;
@@ -12,12 +7,16 @@ import com.google.gdata.util.ServiceException;
 import com.google.gdata.util.ServiceForbiddenException;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.pivot.wtk.Action;
-import org.mm.PIMApplication;
 import org.mm.action.LoginAction;
 import org.mm.contact.ui.ContactTab;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.concurrent.Callable;
 
 /**
  * User: Mustafa Motiwala
@@ -25,7 +24,7 @@ import org.mm.contact.ui.ContactTab;
  * Time: 4:39:40 PM
  */
 public class ContactLoader implements Callable<Boolean> {
-    private static Log log = LogFactory.getLog(ContactLoader.class);
+    private static Logger log = LoggerFactory.getLogger(ContactLoader.class);
     @Inject
     @Named("svcContacts")
     private ContactsService service;
@@ -59,10 +58,10 @@ public class ContactLoader implements Callable<Boolean> {
             log.error("Service Exception:", e);
             throw e;
         } catch (MalformedURLException e) {
-            log.error(e);
+            log.error("Incorrect URL specified:",e);
 //            throw e;
         } catch (IOException e) {
-            log.error(e);
+            log.error("IOException: ",e);
             throw e;
         }
         return true;
