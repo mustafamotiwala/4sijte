@@ -1,73 +1,32 @@
 <Frame title="4SiJte" maximized="true"
         styles="{showWindowControls:false}"
         xmlns:wtkx="http://pivot.apache.org/wtkx"
+        xmlns:bxml="http://pivot.apache.org/bxml"
         xmlns:content="org.apache.pivot.wtk.content"
         xmlns="org.apache.pivot.wtk">
     <actionMappings>
         <Window.ActionMapping action="loginAction" keyStroke="CTRL-L" />
     </actionMappings>
-    <menuBar>
-        <MenuBar>
-            <items>
-                <MenuBar.Item buttonData="File">
-                    <menu>
-                        <Menu>
-                            <sections>
-                                <Menu.Section>
-                                    <Menu.Item action="loginAction">
-                                        <buttonData>
-                                            <content:MenuItemData text="Login" keyboardShortcut="CTRL-L" />
-                                        </buttonData>
-                                    </Menu.Item>
-                                </Menu.Section>
-                            </sections>
-                        </Menu>
-                    </menu>
-                </MenuBar.Item>
-            </items>
-        </MenuBar>
-    </menuBar>
     <content>
+        <TablePane styles="{verticalSpacing:6, height:25, verticalAlignment:'center'}" preferredWidth="320">
+            <columns>
+                <TablePane.Column width="1*" />
+                <TablePane.Column width="2*" />
+            </columns>
+            <rows>
+                <TablePane.Row>
+                    <Label styles="{font:'Liberation Sans 12' }" text="Username: " />
+                    <TextInput styles="{font:'Liberation Sans 12' }"  bxml:id="username" prompt="Username"/>
+                </TablePane.Row>
+                <TablePane.Row>
+                    <Label text="Password: " styles="{font:'Liberation Sans 12'}" />
+                    <TextInput bxml:id="password" password="true" prompt="Password"/>
+                </TablePane.Row>
+                <TablePane.Row>
+                    <PushButton bxml:id="loginButton" styles="{minimumAspectRatio:3}" buttonData="Login"/>
+                    <ActivityIndicator bxml:id="loginActivity" styles="{color:16}" preferredWidth="26" preferredHeight="26"/>
+                </TablePane.Row>
+            </rows>
+        </TablePane>
     </content>
 </Frame>
-
-
-       <!-- <TabPane wtkx:id="tabPane">
-                                    <tabs>
-                                        <BoxPane TabPane.icon="org/apache/pivot/tutorials/bell.png" TabPane.label="Bell"
-                                            styles="{horizontalAlignment:'center', verticalAlignment:'center'}">
-                                            <Border>
-                                                <content>
-                                                    <Label text="240x180" preferredWidth="240" preferredHeight="180"
-                                                        styles="{horizontalAlignment:'center', verticalAlignment:'center'}"/>
-                                                </content>
-                                            </Border>
-                                        </BoxPane>
-                                         <BoxPane TabPane.icon="org/apache/pivot/tutorials/clock.png" TabPane.label="Clock"
-                                            styles="{horizontalAlignment:'center', verticalAlignment:'center'}">
-                                            <Border>
-                                                <content>
-                                                    <Label text="320x240" preferredWidth="320" preferredHeight="240"
-                                                        styles="{horizontalAlignment:'center', verticalAlignment:'center'}"/>
-                                                </content>
-                                            </Border>
-                                        </BoxPane>
-
-                                        <BoxPane TabPane.icon="org/apache/pivot/tutorials/house.png" TabPane.label="House"
-                                            styles="{horizontalAlignment:'center', verticalAlignment:'center'}">
-                                            <Border>
-                                                <content>
-                                                    <Label text="480x360" preferredWidth="480" preferredHeight="360"
-                                                        styles="{horizontalAlignment:'center', verticalAlignment:'center'}"/>
-                                                </content>
-                                            </Border>
-                                        </BoxPane>
-
-                                        <BoxPane TabPane.icon="org/apache/pivot/tutorials/star.png" TabPane.label="Star" enabled="false"/>
-                                    </tabs>
-                                    <corner>
-                                        <BoxPane wtkx:id="cornerBoxPane" styles="{horizontalAlignment:'right'}">
-                                            <TextInput/>
-                                        </BoxPane>
-                                    </corner>
--->
