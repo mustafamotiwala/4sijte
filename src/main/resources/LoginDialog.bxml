@@ -19,7 +19,8 @@
                 </TablePane.Row>
                 <TablePane.Row height="1*">
                     <PushButton bxml:id="loginButton" styles="{minimumAspectRatio:3}" buttonData="Login"/>
-                    <ActivityIndicator bxml:id="loginActivity" styles="{color:16}" preferredWidth="26" preferredHeight="26"/>
+                    <TablePane.Filler />
+                    <!--<ActivityIndicator bxml:id="loginActivity" styles="{color:16}" preferredWidth="26" preferredHeight="26"/>-->
                 </TablePane.Row>
             </rows>
         </TablePane>

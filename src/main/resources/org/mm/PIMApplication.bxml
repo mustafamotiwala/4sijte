@@ -4,27 +4,37 @@
         xmlns:bxml="http://pivot.apache.org/bxml"
         xmlns:content="org.apache.pivot.wtk.content"
         xmlns="org.apache.pivot.wtk">
-    <actionMappings>
-        <Window.ActionMapping action="loginAction" keyStroke="CTRL-L" />
-    </actionMappings>
     <content>
-        <TablePane styles="{verticalSpacing:6, height:25, verticalAlignment:'center'}" preferredWidth="320">
+        <TablePane styles="{verticalSpacing:10}" preferredWidth="320">
             <columns>
-                <TablePane.Column width="1*" />
-                <TablePane.Column width="2*" />
+                <TablePane.Column width="1*"/>
+                <TablePane.Column />
+                <TablePane.Column />
+                <TablePane.Column width="1*"/>
             </columns>
             <rows>
-                <TablePane.Row>
-                    <Label styles="{font:'Liberation Sans 12' }" text="Username: " />
-                    <TextInput styles="{font:'Liberation Sans 12' }"  bxml:id="username" prompt="Username"/>
+                <TablePane.Row height="1*">
+                    <TablePane.Filler />
+                </TablePane.Row>
+                <TablePane.Row >
+                    <TablePane.Filler />
+                    <Label styles="{font:'Liberation Sans 12',verticalAlignment:'center' }" text="Username: " />
+                    <TextInput styles="{font:'Liberation Sans 12'}"  bxml:id="username" prompt="Username"/>
+                    <TablePane.Filler />
                 </TablePane.Row>
                 <TablePane.Row>
-                    <Label text="Password: " styles="{font:'Liberation Sans 12'}" />
+                    <TablePane.Filler />
+                    <Label text="Password: " styles="{font:'Liberation Sans 12',verticalAlignment:'center'}" />
                     <TextInput bxml:id="password" password="true" prompt="Password"/>
+                    <TablePane.Filler />
                 </TablePane.Row>
-                <TablePane.Row>
-                    <PushButton bxml:id="loginButton" styles="{minimumAspectRatio:3}" buttonData="Login"/>
-                    <ActivityIndicator bxml:id="loginActivity" styles="{color:16}" preferredWidth="26" preferredHeight="26"/>
+                <TablePane.Row >
+                    <TablePane.Filler />
+                    <PushButton bxml:id="loginButton" TablePane.columnSpan="2" styles="{minimumAspectRatio:3}" buttonData="Login" action="login"/>
+                    <!--<TablePane.Filler />-->
+                </TablePane.Row>
+                <TablePane.Row height="1*">
+                    <TablePane.Filler />
                 </TablePane.Row>
             </rows>
         </TablePane>
