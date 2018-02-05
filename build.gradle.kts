@@ -23,13 +23,14 @@ plugins {
 }
 
 application {
-    mainClassName="App"
+    mainClassName="fsijte.App"
 }
 // Define the main class for the application
 //mainClassName = 'App'
 
 dependencies {
-    compile(kotlin("stdlib"))
+    implementation(kotlin("stdlib"))
+    implementation("org.jooby:jooby-lang-kotlin:$joobyVersion")
 
     // This dependency is found on compile classpath of this component and consumers.
     // compile 'com.google.guava:guava:23.0'
@@ -43,4 +44,6 @@ repositories {
     // Use jcenter for resolving your dependencies.
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
+    mavenLocal()
+    mavenCentral()
 }
