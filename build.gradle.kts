@@ -10,7 +10,7 @@ repositories {
 }
 
 val junitPlatformVersion = "1.0.0"
-val spekVersion = "1.1.5"
+val spek_version = "1.1.5"
 val joobyVersion = "1.2.3"
 val version by project
 
@@ -42,15 +42,14 @@ dependencies {
 
     //Security:
     implementation("io.jsonwebtoken:jjwt:0.7.0")
-    //implementation("de.svenkubiak:jBCrypt:0.4.1")
+    implementation("de.svenkubiak:jBCrypt:0.4.1")
     implementation("org.hashids:hashids:1.0.2")
 
-    testCompile( "junit:junit:4.12")
-    testCompile("io.rest-assured:rest-assured:3.0.5")
-
-    testCompile("org.jetbrains.spek:spek-api:$spekVersion")
-    testRuntime("org.jetbrains.spek:spek-junit-platform-engine:$spekVersion")
-    testCompile("org.junit.platform:junit-platform-launcher:$junitPlatformVersion")
+    testCompile("com.github.kittinunf.fuel:fuel:1.12.1")
+    testCompile("com.github.kittinunf.fuel:fuel-gson:1.12.1")
+    testCompile("io.mockk:mockk:1.7.7")
+    testCompile("org.jetbrains.spek:spek-api:$spek_version")
+    testCompile("org.junit.platform:junit-platform-runner:1.0.0")
     testCompile("org.amshove.kluent:kluent:1.23")
 
     // This dependency is found on compile classpath of this component and consumers.

@@ -31,3 +31,12 @@ gradle-app.setting
 
 .idea/
 *.iml
+
+########## nodejs:
+node_modules/
+.tern-port
+
+########## Project specific: ##########
+## Compiled web resources:
+public/js
+public/css

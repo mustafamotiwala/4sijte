@@ -1,0 +1,23 @@
+{
+  "name": "4sijte",
+  "version": "0.0.1",
+  "description": "User interface for 4Sijte",
+  "scripts": {
+    "clean": "rm public/js/",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --progress --colors --watch"
+  },
+  "author": "Mustafa Motiwala",
+  "license": "LGPLv3",
+  "dependencies": {
+    "page": "latest",
+    "ramda": "latest",
+    "axios": "latest",
+    "mithril": "latest"
+  },
+  "devDependencies": {
+    "prettier": "^1.11.1",
+    "tern": "^0.21.0",
+    "webpack": "3.3.0"
+  }
+}
