@@ -19,7 +19,7 @@ project.version = version
 plugins {
     // Apply the application plugin to add support for building an application
     application
-    kotlin("jvm").version("1.2.21")
+    kotlin("jvm").version("1.2.31")
     id("jooby").version("1.2.3")
 }
 

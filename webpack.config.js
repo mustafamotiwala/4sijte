@@ -1,19 +1,19 @@
-const path = require("path");
+const path = require('path')
 
 module.exports = {
   entry: {
-    main: "./src/web/js/index.js"
+    main: './src/web/js/index.js'
   },
   output: {
-    path: path.resolve(__dirname, "public/js"),
-    filename: "index.js"
+    path: path.resolve(__dirname, 'public/js'),
+    filename: 'index.js'
   },
   module: {
     rules: [
       {
         test: /\.html$/,
-        loader: "html-loader"
+        loader: 'html-loader'
       }
     ]
   }
-};
+}

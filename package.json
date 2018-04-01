@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "prettier": "^1.11.1",
+    "standard": "^11.0.1",
     "tern": "^0.21.0",
     "webpack": "3.3.0"
   }
