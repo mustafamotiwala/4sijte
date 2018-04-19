@@ -10,14 +10,15 @@
   "author": "Mustafa Motiwala",
   "license": "LGPLv3",
   "dependencies": {
-    "page": "latest",
-    "ramda": "latest",
     "axios": "latest",
-    "mithril": "latest"
+    "mithril": "latest",
+    "page": "latest",
+    "ramda": "latest"
   },
   "devDependencies": {
-    "prettier": "^1.11.1",
-    "standard": "^11.0.1",
+    "eslint": "^4.19.1",
+    "eslint-plugin-prettier": "^2.6.0",
+    "prettier": "1.11.1",
     "tern": "^0.21.0",
     "webpack": "3.3.0"
   }

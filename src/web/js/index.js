@@ -1,7 +1,19 @@
-var m = require('mithril')
+const m = require("mithril");
+const page = require("page");
 
-m.render(document.body, 'Ehllo World!')
+const ensureLogin = (context, next) => {
+  //TODO: validate a user authentication is present...
+  next();
+};
 
-function test() {
-  console.log('This is a test')
-}
+const renderHome = (context, next) => {
+  const homePage = require("./home");
+  let renderElement = document.body;
+  m.mount(renderElement, homePage);
+
+  if (next) {
+    next();
+  }
+};
+
+page("/", ensureLogin, renderHome);
