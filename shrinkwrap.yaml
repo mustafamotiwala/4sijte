@@ -5,7 +5,6 @@ dependencies:
   ramda: 0.25.0
 devDependencies:
   eslint: 4.19.1
-  eslint-config-prettier: 2.9.0
   eslint-plugin-prettier: 2.6.0
   prettier: 1.11.1
   tern: 0.21.0
@@ -848,14 +847,6 @@ packages:
       node: '>=0.4.0'
     resolution:
       integrity: sha1-4Bl16BJ4GhY6ba392AOY3GTIicM=
-  /eslint-config-prettier/2.9.0:
-    dependencies:
-      get-stdin: 5.0.1
-    dev: true
-    peerDependencies:
-      eslint: '>=3.14.1'
-    resolution:
-      integrity: sha512-ag8YEyBXsm3nmOv1Hz991VtNNDMRa+MNy8cY47Pl4bw6iuzqKbJajXdqUpiw13STdLLrznxgm1hj9NhxeOYq0A==
   /eslint-plugin-prettier/2.6.0:
     dependencies:
       fast-diff: 1.1.2
@@ -1155,12 +1146,6 @@ packages:
     dev: true
     resolution:
       integrity: sha1-9wLmMSfn4jHBYKgMFVSstw1QR+U=
-  /get-stdin/5.0.1:
-    dev: true
-    engines:
-      node: '>=0.12.0'
-    resolution:
-      integrity: sha1-Ei4WFZHiH/TFJTAwVpPyDmOTo5g=
   /get-value/2.0.6:
     dev: true
     engines:
@@ -2990,11 +2975,10 @@ shrinkwrapVersion: 3
 specifiers:
   axios: latest
   eslint: ^4.19.1
-  eslint-config-prettier: ^2.9.0
   eslint-plugin-prettier: ^2.6.0
   mithril: latest
   page: latest
-  prettier: ^1.11.1
+  prettier: 1.11.1
   ramda: latest
   tern: ^0.21.0
   webpack: 3.3.0
