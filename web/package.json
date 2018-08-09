@@ -11,15 +11,15 @@
   "license": "LGPLv3",
   "dependencies": {
     "axios": "latest",
-    "mithril": "latest",
     "page": "latest",
-    "ramda": "latest"
+    "ramda": "latest",
+    "vue": "^2.5.17"
   },
   "devDependencies": {
     "eslint": "^4.19.1",
     "eslint-plugin-prettier": "^2.6.0",
     "prettier": "1.11.1",
     "tern": "^0.21.0",
-    "webpack": "3.3.0"
+    "webpack": "4.16.4"
   }
 }

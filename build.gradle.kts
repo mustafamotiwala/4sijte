@@ -11,16 +11,16 @@ repositories {
 
 val junitPlatformVersion = "1.0.0"
 val spek_version = "1.1.5"
-val joobyVersion = "1.2.3"
-val version by project
+val joobyVersion = "1.5.0"
+val version: String by project
 
 project.version = version
 
 plugins {
     // Apply the application plugin to add support for building an application
     application
-    kotlin("jvm").version("1.2.31")
-    id("jooby").version("1.2.3")
+    kotlin("jvm").version("1.2.60")
+    id("jooby").version("1.5.0")
 }
 
 application {
