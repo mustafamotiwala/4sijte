@@ -1,6 +1,8 @@
-const m = require("mithril");
+'use strict';
+
 const page = require("page");
-//TODO: Document this better
+
+const homePage = require("./home");
 
 const ensureLogin = (context, next) => {
   //TODO: validate a user authentication is present...
@@ -8,7 +10,6 @@ const ensureLogin = (context, next) => {
 };
 
 const renderHome = (context, next) => {
-  const homePage = require("./home");
   let renderElement = document.body;
   m.mount(renderElement, homePage);
   if (next) {

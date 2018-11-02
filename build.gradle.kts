@@ -10,8 +10,8 @@ repositories {
 }
 
 val junitPlatformVersion = "1.0.0"
-val spek_version = "1.1.5"
-val joobyVersion = "1.5.0"
+val spekVersion: String by project
+val joobyVersion: String by project
 val version: String by project
 
 project.version = version
@@ -48,19 +48,13 @@ dependencies {
     testCompile("com.github.kittinunf.fuel:fuel:1.12.1")
     testCompile("com.github.kittinunf.fuel:fuel-gson:1.12.1")
     testCompile("io.mockk:mockk:1.7.7")
-    testCompile("org.jetbrains.spek:spek-api:$spek_version")
+    testCompile("org.jetbrains.spek:spek-api:$spekVersion")
     testCompile("org.junit.platform:junit-platform-runner:1.0.0")
     testCompile("org.amshove.kluent:kluent:1.23")
-
-    // This dependency is found on compile classpath of this component and consumers.
-    // compile 'com.google.guava:guava:23.0'
-
-    // Use JUnit test framework
-    // testCompile 'junit:junit:4.12'
 }
 
 //Jooby Specific configurations:
-java.sourceSets["main"].resources {
+sourceSets["main"].resources {
     srcDirs("conf", "public")
 }
 

@@ -3,8 +3,8 @@ module.exports = {
     ecmaVersion: 6,
     sourceType: "module"
   },
-  plugins: ["prettier"],
-  extends: ["prettier", "eslint:recommended"],
+  // plugins: ["prettier"],
+  // extends: ["prettier", "eslint:recommended"],
   env: {
     browser: true,
     commonjs: true,
