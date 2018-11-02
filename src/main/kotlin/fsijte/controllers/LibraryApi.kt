@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory
 import javax.inject.Inject
 
 @Path("/api/library")
-class LibraryApi(private val config: Config) {
+class LibraryApi @Inject constructor(private val config: Config) {
     val log = LoggerFactory.getLogger(this.javaClass)
 
     @GET
