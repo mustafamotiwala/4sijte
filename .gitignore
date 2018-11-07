@@ -43,3 +43,7 @@ node_modules/
 ## Compiled web resources:
 public/js
 public/css
+
+########## Python ##########
+## VirtualEnv for Sphinx
+**/.venv
