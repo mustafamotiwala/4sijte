@@ -3,18 +3,25 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to 4Sijte's documentation!
+4Sijte Technical Documentation
 ==================================
+
+############
+Introduction
+############
+4sijte is a project designed specifically to manage my personal media content in the cloud. This documentation
+will help you get started with the project.
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Table of Contents:
 
+   getting-started
+   database
+..
+   Indices and tables
+   ==================
 
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   * :ref:`genindex`
+   * :ref:`modindex`
+   * :ref:`search`
