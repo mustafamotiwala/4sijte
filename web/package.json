@@ -13,13 +13,12 @@
     "axios": "latest",
     "page": "latest",
     "ramda": "latest",
-    "vue": "^2.5.17"
   },
   "devDependencies": {
-    "eslint": "^4.19.1",
-    "eslint-plugin-prettier": "^2.6.0",
-    "prettier": "1.11.1",
-    "tern": "^0.21.0",
-    "webpack": "4.16.4"
+    "eslint": "latest",
+    "eslint-plugin-prettier": "latest",
+    "prettier": "latest",
+    "tern": "latest",
+    "webpack": "latest"
   }
 }
